@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import {v4 as uuid} from 'uuid'
 import Header from './Header'
 import AddContact from './AddContact'
 import ContactList  from './ContactList' 
@@ -23,14 +24,23 @@ function App() {
 
   const contactHandler = (contact) => {
     console.log(contact)
-    setContacts([...contacts, contact])
+    setContacts([...contacts, {id:uuid(), ...contact}])
+  }
+
+  const contactDeleteHandler = (contactId) => {
+    console.log("App.js contact delete handler is called with ", contactId);
+    const newContactList = contacts.filter((contact)=>{
+      return contact.id != contactId;
+    })
+
+    setContacts(newContactList);
   }
 
   return (
     <div>
       <Header />
       <AddContact contactHandler={contactHandler}/>
-      <ContactList contacts={contacts}/>
+      <ContactList contacts={contacts} contactDeleteHandler={contactDeleteHandler}/>
     </div>
   );
 }
