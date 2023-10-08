@@ -32,11 +32,11 @@ class AddContact extends React.Component {
             <div className='ui main'>
                 <h3> Add Contact </h3>
                 <form className='ui form' onSubmit={this.add}>              
-                    <div>
+                    <div className = 'field'>
                         <label>Name</label>
                         <input type='text' name='name' placeholder='Name' value= {this.state.name} onChange={this.hadleNameChange}></input>
                     </div>
-                    <div>
+                    <div className = 'field'>
                         <label>Email</label>
                         <input type='text' name='email' placeholder='Email' value= {this.state.email} onChange={this.hadleEmailChange}></input>
                     </div>

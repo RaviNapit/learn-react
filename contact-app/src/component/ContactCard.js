@@ -5,9 +5,10 @@ const ContactCard = (props) => {
                 <div className="header"> {props.contact.name} </div>
                 <div> {props.contact.email} </div>
             </div>
-            <i className="trash alternate outline icon" onClick={()=>{
-                props.contactDeleteHandler(props.contact.id);
-            }}></i>
+            <i className="trash alternate outline icon" 
+                style={{color:"red",marginTop:"7px"}}
+                onClick={()=>{props.contactDeleteHandler(props.contact.id);}}
+            ></i>
         </div>
     )
 }
