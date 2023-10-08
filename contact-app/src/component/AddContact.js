@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class AddContact extends React.Component { 
     state = {
@@ -29,7 +30,7 @@ class AddContact extends React.Component {
     render() {
         return(
             <div className='ui main'>
-                <h2> Add Contact </h2>
+                <h3> Add Contact </h3>
                 <form className='ui form' onSubmit={this.add}>              
                     <div>
                         <label>Name</label>
@@ -39,7 +40,10 @@ class AddContact extends React.Component {
                         <label>Email</label>
                         <input type='text' name='email' placeholder='Email' value= {this.state.email} onChange={this.hadleEmailChange}></input>
                     </div>
-                <button type='submit'> Add Contact </button>
+                <button className='ui button blue'>Add Contact</button>
+                <Link to ="/">
+                    <button className='ui button green right'>See Conatct</button>
+                </Link>
                 </form>
             </div>
         )
