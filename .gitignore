@@ -25,3 +25,4 @@ yarn-error.log*
 
 # vs code
 /.vscode
+/server-api/node_modules
