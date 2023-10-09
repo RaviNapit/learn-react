@@ -3,7 +3,8 @@ import {v4 as uuid} from 'uuid'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Header from './Header'
 import AddContact from './AddContact'
-import ContactList  from './ContactList' 
+import ContactList  from './ContactList'
+import api from '../api/contacts' 
 
 
 function App() {
@@ -11,12 +12,20 @@ function App() {
   const [contacts, setContacts] = useState([]) 
   const LOCAL_STORAGE_KEY = 'contacts'
   
-  useEffect(()=>{
-    const retrieveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    console.log('useEffect', retrieveContacts);
-    if(retrieveContacts.length !=0 ) {
-      setContacts(retrieveContacts);
+  const retrieveContacts = async()=>{
+    const response  = await api.get("/contacts");
+    return response.data;
+  }
+
+  const getAllContacts = async() => {
+    const allContact = await retrieveContacts();
+    if(allContact.length !=0 ) {
+      setContacts(allContact);
     }
+}
+
+  useEffect(()=>{
+    getAllContacts();
   },[])
 
   useEffect(()=>{
